@@ -19,8 +19,8 @@ import mapboxLogo from "../images/icons/mapbox-logo.png";
 <Layout title="Matt Lindeboom">
   <main>
     <section class="grid">
-      <div class="grid-column">
-        <div class="card card-small">
+      <div class="grid-column trivia">
+        <div class="card card-small show-mobile">
           <div class="logo">B0om <small>dot net</small></div>
         </div>
 
@@ -41,7 +41,7 @@ import mapboxLogo from "../images/icons/mapbox-logo.png";
             </ul>
           </div>
         </div>
-        <div class="card location card-small">
+        <div class="card card-download card-small show-mobile">
           <div class="card-toolbar">download</div>
           <div class="card-body">
             <ul class="location-items flex-list">
@@ -154,12 +154,15 @@ import mapboxLogo from "../images/icons/mapbox-logo.png";
       line-height: 1;
       color: #f72585;
     }
+
+	
     .grid {
       display: flex;
     }
     .grid-column {
       flex-direction: column;
     }
+
     .card {
       margin-left: 0.875rem;
       border: 1px solid #00ffc0;
@@ -183,9 +186,6 @@ import mapboxLogo from "../images/icons/mapbox-logo.png";
       text-align: center;
     }
 
-    .card-simple {
-      box-shadow: none;
-    }
     .card-toolbar {
       height: 2rem;
       line-height: 2.5;
@@ -246,6 +246,7 @@ import mapboxLogo from "../images/icons/mapbox-logo.png";
     }
     .summary .logos {
       margin: 3rem auto 0;
+			flex-wrap: wrap;
     }
     .location .location-items {
       margin: auto;
@@ -262,5 +263,45 @@ import mapboxLogo from "../images/icons/mapbox-logo.png";
       flex-grow: 1;
       text-align: center;
     }
+
+		@media screen and (max-width: 900px) { 
+			.grid {
+				flex-wrap: wrap;
+				align-items: center;
+				justify-content: center;
+			}
+			.grid .grid-column {
+				flex-grow: 1;
+			}
+			.trivia .card {
+				display: none;
+			}
+			.social .card-body {
+				text-align: center
+			}
+			.card-download {
+				width: 100%
+			}
+			.card-download .card-toolbar {
+				display: none;
+			}
+			.card-download .card-body {
+				flex-grow: 1;
+				padding: auto;
+				padding: 8px;
+			}
+			
+			.card-download .flex-list {
+				margin: auto;
+			}
+
+			.logos li {
+				margin: 1rem;
+			}
+			.show-mobile {
+				display: flex !important;
+			}
+		}
+		
   </style>
 </Layout>
