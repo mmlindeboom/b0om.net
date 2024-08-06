@@ -20,10 +20,22 @@ import mapboxLogo from "../images/icons/mapbox-logo.png";
   <main>
     <section class="grid">
       <div class="grid-column trivia">
+				
         <div class="card card-small show-mobile">
           <div class="logo">B0om <small>dot net</small></div>
         </div>
-
+				<div class="card card-download card-small show-mobile">
+          <div class="card-toolbar">download</div>
+          <div class="card-body">
+            <ul class="location-items flex-list">
+              <li class="data">
+                <a href="/matt_lindeboom_resume_2024.pdf" target="_blank"
+                  >Resume</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
         <div class="card card-small">
           <div class="card-toolbar">last updated</div>
           <div class="card-body">
@@ -41,18 +53,7 @@ import mapboxLogo from "../images/icons/mapbox-logo.png";
             </ul>
           </div>
         </div>
-        <div class="card card-download card-small show-mobile">
-          <div class="card-toolbar">download</div>
-          <div class="card-body">
-            <ul class="location-items flex-list">
-              <li class="data">
-                <a href="/matt_lindeboom_resume_2024.pdf" target="_blank"
-                  >Resume</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
+       
       </div>
       <div class="grid-column">
         <div class="card card-simple social">
@@ -263,7 +264,9 @@ import mapboxLogo from "../images/icons/mapbox-logo.png";
       flex-grow: 1;
       text-align: center;
     }
-
+		.card-small .card-body .flex-list {
+			margin: 2px auto;
+		}
 		@media screen and (max-width: 744px) { 
 			.grid {
 				flex-wrap: wrap;
