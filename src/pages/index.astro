@@ -1,0 +1,244 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import profileImg from "../images/profile.png";
+import sunburstIcn from "../images/sunburst.svg";
+import linkedinIcn from "../images/icons/linkedin.svg";
+import githubIcn from "../images/icons/github.svg";
+import mastodonIcn from "../images/icons/mastodon.svg";
+import tsLogo from "../images/icons/ts-logo-128.png";
+import reactLogo from "../images/icons/react-logo.png";
+import svelteLogo from "../images/icons/svelte-logo.png";
+import pythonLogo from "../images/icons/python-logo.png";
+import d3Logo from "../images/icons/d3-logo.png";
+import postgresLogo from "../images/icons/postgres-logo.png";
+import mapboxLogo from "../images/icons/mapbox-logo.png";
+---
+
+<Layout title="Matt Lindeboom">
+  <main>
+    <section class="grid">
+      <div class="grid-column">
+        <div class="card card-small">
+          <div class="logo">B0om <small>dot net</small></div>
+        </div>
+
+        <div class="card card-small">
+          <div class="card-toolbar">last updated</div>
+          <div class="card-body">
+            <p class="data">JUL 30 TUE</p>
+          </div>
+        </div>
+        <div class="card location card-small">
+          <div class="card-toolbar">weather</div>
+          <div class="card-body">
+            <ul class="location-items flex-list">
+              <li class="data">Oakland, CA</li>
+              <li>
+                <Image src={sunburstIcn} width="20" height="20" alt="Sunny" />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="grid-column">
+        <div class="card card-simple social">
+          <div class="card-toolbar">social</div>
+          <div class="card-body">
+            <Image src={profileImg} alt="Matt Lindeboom" />
+            <p class="social-nametag">
+              Matt Lindeboom, <br />Leader & Software Engineer
+            </p>
+            <ul class="social-links flex-list">
+              <li>
+                <a href=""><Image src={linkedinIcn} alt="LinkedIn" /></a>
+              </li>
+              <li><a href=""><Image src={githubIcn} alt="Github" /></a></li>
+              <li><a href=""><Image src={mastodonIcn} alt="Mastodon" /></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-column">
+        <div class="card summary">
+          <div class="card-toolbar">summary</div>
+          <div class="card-body">
+            <h1>Hello, I'm Matt.</h1>
+            <p class="summary-section-title">I lead teams.</p>
+            <p>
+              I help interdisciplinary teams develop awareness, overcome
+              communication barriers, and continually adapt to uncertainty and
+              complexity on a foundation of trust and real feedback.
+            </p>
+            <p class="summary-section-title mt-16">
+              I like complex data problems.
+            </p>
+            <p>
+              Visualizations, prototypes and end-to-end workflows are my
+              favorite problems to work on with designers and data scientists.
+            </p>
+            <ul class="flex-list logos">
+              <li><Image src={tsLogo} width="40" alt="Typescript" /></li>
+              <li>
+                <Image src={reactLogo} width="40" alt="React Framework" />
+              </li>
+              <li><Image src={svelteLogo} width="40" alt="SvelteJS" /></li>
+              <li><Image src={pythonLogo} width="40" alt="Python" /></li>
+              <li><Image src={d3Logo} width="40" alt="D3" /></li>
+              <li><Image src={postgresLogo} width="40" alt="Postgres" /></li>
+              <li><Image src={mapboxLogo} height="40" alt="Mapbox" /></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    main {
+      margin: auto;
+      max-width: calc(100% - 1rem);
+      color: white;
+      font-size: 16px;
+    }
+    main section {
+      position: relative;
+      display: flex;
+      line-height: 1.6;
+      margin: 1rem;
+      padding: 0;
+    }
+    .logo {
+      font-size: 1.25rem;
+      margin: 2px auto;
+      line-height: 1;
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 500;
+      font-style: normal;
+      color: #f72585;
+      text-align: center;
+    }
+    .logo small {
+      font-size: 0.3875em;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-family: "Inconsolata", monospace;
+      font-weight: 400;
+      margin: 0 auto 1rem auto;
+      line-height: 1;
+      color: #f72585;
+    }
+    .grid {
+      display: flex;
+    }
+    .grid-column {
+      flex-direction: column;
+    }
+    .card {
+      margin-left: 0.875rem;
+      border: 1px solid #00ffc0;
+      border-radius: 3px;
+      box-shadow: -1px 1px 3px #02dda6;
+      color: #002727;
+      background: #fff;
+      margin-bottom: 1rem;
+    }
+    .card-small {
+      min-width: 8rem;
+      box-shadow: none;
+      border: 0;
+      background: inherit;
+    }
+    .card-small .card-body {
+      padding: 1rem;
+    }
+    .card-small .card-toolbar,
+    .card-small .card-body {
+      text-align: center;
+    }
+
+    .card-simple {
+      box-shadow: none;
+    }
+    .card-toolbar {
+      height: 2rem;
+      line-height: 2.5;
+      padding: 0 1rem;
+      border-bottom: 1px solid #00ffc0;
+      font-size: 0.75rem;
+      font-family: "IMB Plex Mono", monospace;
+      color: #798a8a;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+      font-family: "Vollkorn", serif;
+      font-weight: normal;
+      font-style: normal;
+      font-size: 1.2rem;
+      line-height: 1.2;
+    }
+
+    .card-body p {
+      margin: 1rem auto;
+      line-height: 1.2;
+    }
+
+    .card-body .summary-section-title {
+      font-size: 2rem;
+      text-decoration: underline;
+      text-decoration-color: #f72585;
+      margin-top: 2rem;
+    }
+    .card-body .data {
+      margin: 2px auto;
+      font-size: 0.875rem;
+      font-family: "Inconsolata", monospace;
+    }
+    .card-body .data-row {
+      display: flex;
+      flex-grow: 1;
+      padding: 0;
+      list-style-type: none;
+    }
+    .card-body .data-row li {
+      margin-right: 1rem;
+    }
+    .social img {
+      position: relative;
+      width: 12rem;
+      height: 12rem;
+    }
+    .social .social-links img {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+    .social-nametag {
+      font-size: 0.875rem;
+      text-align: center;
+      margin: 8px auto !important;
+    }
+    .summary .logos {
+      margin: 3rem auto 0;
+    }
+    .location .location-items {
+      margin: auto;
+    }
+    .location .location-items li {
+      flex-grow: 1;
+    }
+    .flex-list {
+      display: flex;
+      padding: 0;
+      list-style-type: none;
+    }
+    .flex-list li {
+      flex-grow: 1;
+      text-align: center;
+    }
+  </style>
+</Layout>
