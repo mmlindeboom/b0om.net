@@ -20,11 +20,10 @@ import mapboxLogo from "../images/icons/mapbox-logo.png";
   <main>
     <section class="grid">
       <div class="grid-column trivia">
-				
         <div class="card card-small show-mobile">
           <div class="logo">B0om <small>dot net</small></div>
         </div>
-				<div class="card card-download card-small show-mobile">
+        <div class="card card-download card-small show-mobile">
           <div class="card-toolbar">download</div>
           <div class="card-body">
             <ul class="location-items flex-list">
@@ -36,7 +35,7 @@ import mapboxLogo from "../images/icons/mapbox-logo.png";
             </ul>
           </div>
         </div>
-       
+
         <div class="card location card-small">
           <div class="card-toolbar">weather</div>
           <div class="card-body">
@@ -91,8 +90,10 @@ import mapboxLogo from "../images/icons/mapbox-logo.png";
             <h1>Hello, I'm Matt.</h1>
             <p class="summary-section-title">I like to be the glue.</p>
             <p>
-              Leading or contributing, I want to help interdisciplinary teams develop awareness, overcome
-              communication barriers, and adapt to uncertainty. A foundation of trust and real feedback is one of your best investments.
+              Leading or contributing, I want to help interdisciplinary teams
+              develop awareness, overcome communication barriers, and adapt to
+              uncertainty. A foundation of trust and real feedback is one of
+              your best investments.
             </p>
             <p class="summary-section-title mt-16">
               I like complex data problems.
@@ -100,6 +101,9 @@ import mapboxLogo from "../images/icons/mapbox-logo.png";
             <p>
               Visualizations, prototypes and end-to-end workflows are my
               favorite problems to work on with designers and data scientists.
+            </p>
+            <p class="summary-section-title mention mt-16">
+              Ask me about my <span class="em">VR/UI</span> experiments.
             </p>
             <ul class="flex-list logos">
               <li><Image src={tsLogo} width="40" alt="Typescript" /></li>
@@ -155,7 +159,6 @@ import mapboxLogo from "../images/icons/mapbox-logo.png";
       color: #f72585;
     }
 
-	
     .grid {
       display: flex;
     }
@@ -216,6 +219,14 @@ import mapboxLogo from "../images/icons/mapbox-logo.png";
       text-decoration-color: #f72585;
       margin-top: 2rem;
     }
+    .card-body .summary-section-title.mention {
+      font-size: 1.45rem;
+      text-decoration: none;
+    }
+    .card-body .summary-section-title.mention .em {
+      color: #f72585;
+      font-family: "Inconsolata", monospace;
+    }
     .card-body .data {
       margin: 2px auto;
       font-size: 0.875rem;
@@ -246,7 +257,7 @@ import mapboxLogo from "../images/icons/mapbox-logo.png";
     }
     .summary .logos {
       margin: 3rem auto 0;
-			flex-wrap: wrap;
+      flex-wrap: wrap;
     }
     .location .location-items {
       margin: auto;
@@ -263,47 +274,46 @@ import mapboxLogo from "../images/icons/mapbox-logo.png";
       flex-grow: 1;
       text-align: center;
     }
-		.card-small .card-body .flex-list {
-			margin: 2px auto;
-		}
-		@media screen and (max-width: 744px) { 
-			.grid {
-				flex-wrap: wrap;
-				align-items: center;
-				justify-content: center;
-			}
-			.grid .grid-column {
-				flex-grow: 1;
-			}
-			.trivia .card {
-				display: none;
-			}
-			.social .card-body {
-				text-align: center
-			}
-			.card-download {
-				width: 100%
-			}
-			.card-download .card-toolbar {
-				display: none;
-			}
-			.card-download .card-body {
-				flex-grow: 1;
-				padding: auto;
-				padding: 8px;
-			}
-			
-			.card-download .flex-list {
-				margin: auto;
-			}
+    .card-small .card-body .flex-list {
+      margin: 2px auto;
+    }
+    @media screen and (max-width: 744px) {
+      .grid {
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+      }
+      .grid .grid-column {
+        flex-grow: 1;
+      }
+      .trivia .card {
+        display: none;
+      }
+      .social .card-body {
+        text-align: center;
+      }
+      .card-download {
+        width: 100%;
+      }
+      .card-download .card-toolbar {
+        display: none;
+      }
+      .card-download .card-body {
+        flex-grow: 1;
+        padding: auto;
+        padding: 8px;
+      }
 
-			.logos li {
-				margin: 1rem;
-			}
-			.show-mobile {
-				display: flex !important;
-			}
-		}
-		
+      .card-download .flex-list {
+        margin: auto;
+      }
+
+      .logos li {
+        margin: 1rem;
+      }
+      .show-mobile {
+        display: flex !important;
+      }
+    }
   </style>
 </Layout>
