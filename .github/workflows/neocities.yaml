@@ -8,6 +8,10 @@ on:
   push:
     branches:
       - main
+  schedule:
+    # Rebuild daily at 15:00 UTC (~8am Pacific) so the weather card stays fresh
+    - cron: "0 15 * * *"
+  workflow_dispatch: # allow manual rebuilds
 
 jobs:
   deploy:

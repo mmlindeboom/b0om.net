@@ -4,6 +4,12 @@ import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import profileImg from "../images/profile.png";
 import sunburstIcn from "../images/sunburst.svg";
+import partlyCloudyIcn from "../images/icons/weather/partly-cloudy.svg";
+import cloudyIcn from "../images/icons/weather/cloudy.svg";
+import fogIcn from "../images/icons/weather/fog.svg";
+import rainIcn from "../images/icons/weather/rain.svg";
+import snowIcn from "../images/icons/weather/snow.svg";
+import thunderIcn from "../images/icons/weather/thunder.svg";
 import linkedinIcn from "../images/icons/linkedin.svg";
 import githubIcn from "../images/icons/github.svg";
 import mastodonIcn from "../images/icons/mastodon.svg";
@@ -14,6 +20,61 @@ import pythonLogo from "../images/icons/python-logo.png";
 import d3Logo from "../images/icons/d3-logo.png";
 import postgresLogo from "../images/icons/postgres-logo.png";
 import mapboxLogo from "../images/icons/mapbox-logo.png";
+
+// --- Live weather for Oakland, CA via Open-Meteo (no API key required) ---
+// Fetched once at build time; the site rebuilds daily via GitHub Actions cron.
+const OAKLAND = { lat: 37.8044, lon: -122.2712 };
+
+type Icon = typeof sunburstIcn;
+
+interface Weather {
+  tempF: number;
+  description: string;
+  icon: Icon;
+}
+
+function mapWeatherCode(code: number): { description: string; icon: Icon } {
+  if (code === 0) return { description: "Sunny", icon: sunburstIcn };
+  if (code <= 2) return { description: "Partly cloudy", icon: partlyCloudyIcn };
+  if (code === 3) return { description: "Cloudy", icon: cloudyIcn };
+  if (code <= 48) return { description: "Foggy", icon: fogIcn };
+  if (code <= 67) return { description: "Rainy", icon: rainIcn };
+  if (code <= 77) return { description: "Snowy", icon: snowIcn };
+  if (code <= 82) return { description: "Rainy", icon: rainIcn };
+  if (code <= 86) return { description: "Snowy", icon: snowIcn };
+  return { description: "Thunderstorms", icon: thunderIcn };
+}
+
+async function getWeather(): Promise<Weather | null> {
+  try {
+    const url =
+      `https://api.open-meteo.com/v1/forecast` +
+      `?latitude=${OAKLAND.lat}&longitude=${OAKLAND.lon}` +
+      `&current=temperature_2m,weather_code` +
+      `&temperature_unit=fahrenheit&timezone=America%2FLos_Angeles`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Open-Meteo responded ${res.status}`);
+    const data = await res.json();
+    const { description, icon } = mapWeatherCode(data.current.weather_code);
+    return { tempF: Math.round(data.current.temperature_2m), description, icon };
+  } catch (err) {
+    console.warn("[weather] fetch failed, falling back to static card:", err);
+    return null;
+  }
+}
+
+const weather = await getWeather();
+
+// Build date for the "last updated" card, in Pacific time (e.g. "MON AUG 5")
+const lastUpdated = new Date()
+  .toLocaleDateString("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    timeZone: "America/Los_Angeles",
+  })
+  .toUpperCase()
+  .replace(",", "");
 ---
 
 <Layout title="Matt Lindeboom">
@@ -40,9 +101,17 @@ import mapboxLogo from "../images/icons/mapbox-logo.png";
           <div class="card-toolbar">weather</div>
           <div class="card-body">
             <ul class="location-items flex-list">
-              <li class="data">Oakland, CA</li>
+              <li class="data">
+                Oakland, CA
+                {weather && <><br />{weather.tempF}&deg;F &middot; {weather.description}</>}
+              </li>
               <li>
-                <Image src={sunburstIcn} width="20" height="20" alt="Sunny" />
+                <Image
+                  src={weather ? weather.icon : sunburstIcn}
+                  width="20"
+                  height="20"
+                  alt={weather ? weather.description : "Sunny"}
+                />
               </li>
             </ul>
           </div>
@@ -50,7 +119,7 @@ import mapboxLogo from "../images/icons/mapbox-logo.png";
         <div class="card card-small">
           <div class="card-toolbar">last updated</div>
           <div class="card-body">
-            <p class="data">MON AUG 5</p>
+            <p class="data">{lastUpdated}</p>
           </div>
         </div>
       </div>
